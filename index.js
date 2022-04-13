@@ -117,7 +117,7 @@ class ServerlessWebpack {
           this.serverless.service.provider.runtime ||
           'nodejs';
 
-        if (isNodeRuntime(runtime)) {
+        if (isNodeRuntime(runtime) || this.serverless.service.custom.webpack.allowCustomRuntime) {
           return BbPromise.bind(this)
             .then(() => this.serverless.pluginManager.spawn('webpack:validate'))
             .then(() => this.serverless.pluginManager.spawn('webpack:compile'))
